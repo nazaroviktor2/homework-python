@@ -21,7 +21,7 @@ def check_date(year: int, month: int, day: int) -> bool:
     elif month in MONTH_TWO and 0 < day <= DAY_IN_MOUTH:
         return True
     elif month == 2:
-        if abs(year) % HUNDRED == 0 and abs(year) % HUNDRED * 4 == 0 or abs(year) % 4 == 0 \
+        if abs(year) % HUNDRED == 0 and abs(year) % (HUNDRED * 4) == 0 or abs(year) % 4 == 0 \
                 and abs(year) % HUNDRED != 0:
             if 0 < day <= DAY_IN_MOUTH - 1:
                 return True
