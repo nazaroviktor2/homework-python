@@ -1,4 +1,11 @@
-def fun_1(user_input):
+def fun_1(user_input: str) -> float:
+    """Takes string with capitals letter and small letters, counts substrings which are more.
+
+    Args:
+        user_input : str - string with substrings.
+
+    Returns: float - percentage of substrings with more capitals letter.
+    """
     words = user_input.split(" ")  # список слов введных пользователем
     capital_letters = []  # список в котором значение 1-- в подстроке больше больших символов, 0 -маленьких
 
@@ -20,11 +27,26 @@ def fun_1(user_input):
     return round(sum(capital_letters) * 100 / len(capital_letters), 2)
 
 
-def fun_with_generator(user_input):
-    def generator(words):
-        for word in words:
+def fun_with_generator(user_input: str) -> float:
+    """Takes string with capitals letter and small letters, counts substrings which are more.
+
+    Args:
+        user_input : str - string with substrings.
+
+    Returns: float - percentage of substrings with more capitals letter.
+    """
+    def generator(word: str) -> int:
+        """Takes word and checks if there are more capitals characters in a string.
+
+        Args:
+            word : str - some word.
+
+        Yields:
+            int : 1 if there are more capitals characters and 0 else.
+        """
+        for symbol in word:
             # сумма больших в слове минус сумма маленьких в слове
-            res = sum(map(lambda x: int(x.isupper()), word)) - sum(map(lambda x: int(x.islower()), word))
+            res = sum(map(lambda x: int(x.isupper()), symbol)) - sum(map(lambda x: int(x.islower()), symbol))
             if res <= 0:
                 yield 0
             else:
@@ -37,9 +59,8 @@ def fun_with_generator(user_input):
 
 def main():
     user_input = input("Введите через пробел подстроки содержащие заглавные и строчные символы: ")
-    print("fun_1: Процент подстрок в которых заглавных символов больше = {0}%".format(fun_1(user_input)))
-    print("fun_2: Процент подстрок в которых заглавных символов больше = {0}%".format(fun_with_generator(user_input)))
-
+    print(f"fun_1: Процент подстрок в которых заглавных символов больше = {fun_1(user_input)}%")
+    print(f"fun_2: Процент подстрок в которых заглавных символов больше = {fun_with_generator(user_input)}%")
 
 
 if __name__ == '__main__':

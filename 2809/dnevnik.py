@@ -2,7 +2,15 @@ import calendar
 import datetime
 
 
-def dnevnik(date, notes):
+def dnevnik(date: str, notes: list) -> None:
+    """Keeps a captain's diary and create file with dated notes.
+
+        Args:
+            date : str - the date the notes started.
+            notes : list - with captain's notes.
+
+        Returns: none.
+        """
     day, month, year = map(int, date.split("."))
     start_date = datetime.date(year, month, day)
     finish_date = start_date + datetime.timedelta(len(notes))
