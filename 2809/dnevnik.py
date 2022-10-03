@@ -1,22 +1,18 @@
-import calendar
+"""Create file captain's diary."""
 import datetime
 
 
-def dnevnik(date: str, notes: list) -> None:
-    """Keeps a captain's diary and create file with dated notes.
+def dnevnik(day: int, month: int, year: int, notes: list) -> None:
+    """Keeps a captain's diary and creates file with dated notes.
 
-        Args:
-            date : str - the date the notes started.
-            notes : list - with captain's notes.
-
-        Returns: none.
-        """
-    day, month, year = map(int, date.split("."))
+    Args:
+        day: int some day
+        month: int some month
+        year: int some year
+        notes: list - captain's notes
+    """
     start_date = datetime.date(year, month, day)
     finish_date = start_date + datetime.timedelta(len(notes))
-    calendar.Calendar().itermonthdays()
-    file = open(f"записи за {start_date}-{finish_date}.txt", "w")
-    for i, note in enumerate(notes):
-        file.write(f"{start_date + datetime.timedelta(i)}: {note}\n")
-
-    file.close()
+    with open("записи за {0}-{1}.txt".format(start_date, finish_date), "w") as file_name:
+        for index, note in enumerate(notes):
+            file_name.write("{0}: {1}\n".format(start_date + datetime.timedelta(index), note))
